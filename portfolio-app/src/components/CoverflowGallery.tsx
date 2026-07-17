@@ -28,10 +28,23 @@ export const CoverflowGallery: React.FC = () => {
   const items = GALLERY_DATA.filter((g) => g.category === activeCat);
   const count = items.length;
 
+  /* Bumped by every manual navigation so the auto-advance timer restarts from
+     zero instead of yanking the slide away mid-look. */
+  const [navNonce, setNavNonce] = useState(0);
+
   const go = useCallback(
-    (dir: number) => setIndex((i) => (i + dir + count) % count),
+    (dir: number) => {
+      if (count === 0) return;
+      setIndex((i) => (i + dir + count) % count);
+      setNavNonce((n) => n + 1);
+    },
     [count]
   );
+
+  const select = useCallback((i: number) => {
+    setIndex(i);
+    setNavNonce((n) => n + 1);
+  }, []);
 
   // Reset to first slide whenever the category changes
   useEffect(() => {
@@ -43,7 +56,7 @@ export const CoverflowGallery: React.FC = () => {
     if (paused || lightbox || count <= 1) return;
     const timer = setInterval(() => setIndex((i) => (i + 1) % count), 2200);
     return () => clearInterval(timer);
-  }, [paused, lightbox, count]);
+  }, [paused, lightbox, count, navNonce]);
 
   // Keyboard arrows
   useEffect(() => {
@@ -71,14 +84,31 @@ export const CoverflowGallery: React.FC = () => {
 
   // Touch / drag swipe
   const dragStart = useRef<number | null>(null);
+  const swiped = useRef(false);
+
   const onPointerDown = (e: React.PointerEvent) => {
     dragStart.current = e.clientX;
+    swiped.current = false;
   };
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStart.current === null) return;
     const delta = e.clientX - dragStart.current;
-    if (Math.abs(delta) > 60) go(delta > 0 ? -1 : 1);
     dragStart.current = null;
+    if (Math.abs(delta) > 60) {
+      swiped.current = true;
+      go(delta > 0 ? -1 : 1);
+    }
+  };
+  const onPointerLeave = () => {
+    dragStart.current = null;
+  };
+
+  /* A pointerdown+pointerup pair also emits a click. Without this, a swipe would
+     land on a card whose handler then re-selects it, undoing the swipe. */
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (!swiped.current) return;
+    swiped.current = false;
+    e.stopPropagation();
   };
 
   const active = items[index];
@@ -130,6 +160,9 @@ export const CoverflowGallery: React.FC = () => {
           onMouseLeave={() => setPaused(false)}
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
+          onPointerLeave={onPointerLeave}
+          onPointerCancel={onPointerLeave}
+          onClickCapture={onClickCapture}
         >
           <div className="cf-glow" aria-hidden="true" />
 
@@ -169,7 +202,7 @@ export const CoverflowGallery: React.FC = () => {
                   key={item.id}
                   className={offset === 0 ? 'cf-card cf-card-active' : 'cf-card cf-card-side'}
                   style={style}
-                  onClick={() => (offset === 0 ? setLightbox(item) : setIndex(i))}
+                  onClick={() => (offset === 0 ? setLightbox(item) : select(i))}
                   aria-hidden={offset !== 0}
                 >
                   <img
@@ -219,12 +252,16 @@ export const CoverflowGallery: React.FC = () => {
         </div>
 
         {/* Dots */}
-        <div className="cf-dots">
+        <div
+          className="cf-dots"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           {items.map((item, i) => (
             <button
               key={item.id}
               className={i === index ? 'cf-dot cf-dot-active' : 'cf-dot'}
-              onClick={() => setIndex(i)}
+              onClick={() => select(i)}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
