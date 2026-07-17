@@ -7,7 +7,7 @@ type Theme = 'dark' | 'light';
 const getInitialTheme = (): Theme => {
   const stored = window.localStorage.getItem('portfolio-theme');
   if (stored === 'light' || stored === 'dark') return stored;
-  return 'dark';
+  return 'light';
 };
 
 export const ThemeToggle: React.FC = () => {
