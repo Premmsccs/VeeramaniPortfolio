@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- ears -->
+  <rect x="3" y="26" width="7.5" height="13" rx="3.75" fill="#c2d8f2" stroke="#3a3f46" stroke-width="2"/>
+  <rect x="53.5" y="26" width="7.5" height="13" rx="3.75" fill="#c2d8f2" stroke="#3a3f46" stroke-width="2"/>
+  <!-- head -->
+  <rect x="9" y="10.5" width="46" height="41" rx="13" fill="#d3e3f7" stroke="#3a3f46" stroke-width="2.5"/>
+  <!-- screen face -->
+  <rect x="15" y="18" width="34" height="26" rx="9" fill="#35568b" stroke="#3a3f46" stroke-width="2"/>
+  <!-- eyes -->
+  <circle cx="25" cy="30" r="3.3" fill="#3fe0c8"/>
+  <circle cx="39" cy="30" r="3.3" fill="#3fe0c8"/>
+  <!-- smile -->
+  <path d="M25 35.5 Q32 41 39 35.5" stroke="#3fe0c8" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <!-- chin / neck -->
+  <path d="M26 51.2 h12" stroke="#3a3f46" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

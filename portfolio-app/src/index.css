@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+/* ==========================================================================
+   MIDNIGHT AURORA — ADVANCED DARK LUXURY DESIGN SYSTEM
+   Obsidian glass surfaces • Champagne gold + violet aurora accents
+   ========================================================================== */
+:root {
+  /* Typography */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Obsidian Foundation */
+  --bg-primary: #050507;
+  --bg-elevated: #0a0a0e;
+  --bg-surface: rgba(255, 255, 255, 0.035);
+  --bg-surface-strong: rgba(255, 255, 255, 0.06);
+  --bg-subtle: rgba(255, 255, 255, 0.02);
+  --bg-card: rgba(255, 255, 255, 0.04);
+
+  /* High-Contrast Dark Editorial Text */
+  --text-primary: #f5f5f7;
+  --text-secondary: #b8b8c2;
+  --text-muted: #7d7d89;
+  --text-inverse: #0a0a0a;
+
+  /* Glass Borders */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-gold: rgba(197, 160, 89, 0.35);
+
+  /* Luxury Gold & Aurora Violet Accents */
+  --accent-primary: #f5f5f7;
+  --accent-secondary: #b8b8c2;
+  --accent-gold: #d9b876;
+  --accent-gold-light: rgba(217, 184, 118, 0.12);
+  --accent-gold-dark: #c5a059;
+  --accent-violet: #8f7dff;
+  --accent-violet-light: rgba(143, 125, 255, 0.14);
+  --accent-emerald: #34d399;
+
+  /* Raw RGB channels so component rgba() washes stay theme-correct */
+  --accent-gold-rgb: 217, 184, 118;
+  --accent-violet-rgb: 143, 125, 255;
+  --accent-emerald-rgb: 52, 211, 153;
+  --surface-tint-rgb: 255, 255, 255;
+  --scrim-rgb: 0, 0, 0;
+
+  /* Editorial Gradients & Glows */
+  --gradient-gold: linear-gradient(135deg, #f3dfa8 0%, #d9b876 45%, #a9843f 100%);
+  --gradient-aurora: linear-gradient(135deg, #d9b876 0%, #c98fff 50%, #8f7dff 100%);
+  --gradient-button: var(--gradient-aurora);
+  --gradient-dark: linear-gradient(135deg, #17171c 0%, #050507 100%);
+  --gradient-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+
+  /* Elevations & Glows */
+  --shadow-sm: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 32px 64px -16px rgba(0, 0, 0, 0.65);
+  --shadow-gold: 0 12px 32px -8px rgba(217, 184, 118, 0.3);
+  --shadow-dark: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
+  --glow-gold: 0 0 0 1px rgba(217, 184, 118, 0.25), 0 0 32px rgba(217, 184, 118, 0.18);
+  --glow-violet: 0 0 0 1px rgba(143, 125, 255, 0.25), 0 0 32px rgba(143, 125, 255, 0.16);
+
+  --blur-glass: blur(20px);
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Theme-adaptive chrome (navbar / dropdown glass tint) */
+  --navbar-glass: rgba(6, 6, 9, 0.55);
+  --navbar-glass-scrolled: rgba(6, 6, 9, 0.82);
+  --dropdown-glass: rgba(6, 6, 9, 0.96);
+  --grid-line-color: rgba(255, 255, 255, 0.035);
+  --aurora-opacity: 0.32;
+}
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDE — same aurora-luxury system on a bright canvas
+   ========================================================================== */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-primary: #fbfaf7;
+  --bg-elevated: #ffffff;
+  --bg-surface: rgba(10, 10, 15, 0.035);
+  --bg-surface-strong: rgba(10, 10, 15, 0.06);
+  --bg-subtle: rgba(10, 10, 15, 0.02);
+  --bg-card: rgba(255, 255, 255, 0.7);
+
+  --text-primary: #0a0a0c;
+  --text-secondary: #46464f;
+  --text-muted: #7a7a85;
+  --text-inverse: #ffffff;
+
+  --border-color: rgba(10, 10, 15, 0.08);
+  --border-strong: rgba(10, 10, 15, 0.14);
+  --border-gold: rgba(160, 122, 53, 0.35);
+
+  --accent-gold: #a97e2f;
+  --accent-gold-light: rgba(169, 126, 47, 0.1);
+  --accent-gold-dark: #8c6b28;
+  --accent-violet: #6a52e0;
+  --accent-violet-light: rgba(106, 82, 224, 0.1);
+
+  --accent-gold-rgb: 169, 126, 47;
+  --accent-violet-rgb: 106, 82, 224;
+  --accent-emerald-rgb: 5, 150, 105;
+  --surface-tint-rgb: 10, 10, 15;
+  --scrim-rgb: 20, 15, 5;
+
+  --gradient-aurora: linear-gradient(135deg, #c99a44 0%, #a97ee0 50%, #6a52e0 100%);
+  --gradient-button: linear-gradient(135deg, #e3bb6c 0%, #c99a44 55%, #a97e2f 100%);
+
+  --shadow-sm: 0 1px 3px 0 rgba(20, 15, 5, 0.06);
+  --shadow-md: 0 8px 20px -4px rgba(20, 15, 5, 0.08), 0 2px 6px -1px rgba(20, 15, 5, 0.05);
+  --shadow-lg: 0 24px 44px -14px rgba(20, 15, 5, 0.12);
+  --shadow-xl: 0 30px 60px -16px rgba(20, 15, 5, 0.16);
+  --glow-gold: 0 0 0 1px rgba(169, 126, 47, 0.25), 0 0 26px rgba(169, 126, 47, 0.14);
+  --glow-violet: 0 0 0 1px rgba(106, 82, 224, 0.2), 0 0 26px rgba(106, 82, 224, 0.12);
+
+  --navbar-glass: rgba(255, 255, 255, 0.62);
+  --navbar-glass-scrolled: rgba(255, 255, 255, 0.88);
+  --dropdown-glass: rgba(255, 255, 255, 0.97);
+  --grid-line-color: rgba(10, 10, 15, 0.045);
+  --aurora-opacity: 0.2;
+}
+
+/* Global Reset & Obsidian Foundation */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: #0a0a0a;
+}
+
+/* Refined Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent-gold-dark), var(--accent-violet));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Precision Container */
+.container-max {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Large desktops / iMac — let the layout breathe instead of stranding it mid-screen */
+@media (min-width: 1700px) {
+  .container-max {
+    max-width: 1480px;
+    padding: 0 48px;
+  }
+}
+
+@media (min-width: 2200px) {
+  .container-max {
+    max-width: 1720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-max {
+    padding: 0 20px;
+  }
+}
+
+/* Standard Utility Helpers */
+.section-padding {
+  padding: 110px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 72px 0;
+  }
+}
+
+/* ==========================================================================
+   ANIMATION KEYFRAME LIBRARY
+   ========================================================================== */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-light 3s infinite ease-in-out;
+}
+
+@keyframes pulse-light {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6%, -8%) scale(1.08); }
+  66% { transform: translate(-4%, 6%) scale(0.96); }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-8%, 5%) scale(1.05); }
+  70% { transform: translate(5%, -6%) scale(0.94); }
+}
+
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, 8%) scale(1.1); }
+}
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -2%); }
+  30% { transform: translate(2%, 1%); }
+  50% { transform: translate(-2%, 2%); }
+  70% { transform: translate(1%, -1%); }
+  90% { transform: translate(-1%, 2%); }
+}
+
+@keyframes gradient-text-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cursor-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.25); }
+}
+
+.text-gradient-gold {
+  color: var(--accent-gold);
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
