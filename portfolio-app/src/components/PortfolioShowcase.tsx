@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { Eye, ArrowUpRight, Layers } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Eye, ArrowUpRight, Layers, Menu } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { PROJECTS_DATA, type Project } from '../data/portfolioData';
 import { ProjectModal } from './ProjectModal';
+
+// Grouped by category — every "presentation" together, every "redesign" together, etc.
+const CATEGORY_ORDER: Project['category'][] = ['presentation', 'redesign', 'infographic', 'dashboard', 'poster'];
+const GROUPED_PROJECTS = [...PROJECTS_DATA].sort(
+  (a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
+);
+
+// Duplicated once so the CSS marquee can loop seamlessly at -50%.
+const MARQUEE_ITEMS = [...GROUPED_PROJECTS, ...GROUPED_PROJECTS];
 
 export const PortfolioShowcase: React.FC = () => {
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
@@ -32,38 +41,34 @@ export const PortfolioShowcase: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid with AnimatePresence */}
-        <motion.div
-          layout
-          className="portfolio-grid"
-        >
-          <AnimatePresence>
-            {PROJECTS_DATA.map((project: Project, idx: number) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.45, delay: (idx % 6) * 0.06, ease: 'easeOut' }}
-                whileHover={{ y: -8 }}
-                key={project.id}
+        {/* Continuous, order-wise auto-scrolling marquee */}
+        <div className="cs-marquee">
+          <div className="cs-marquee-track">
+            {MARQUEE_ITEMS.map((project, i) => (
+              <div
+                className="cs-marquee-card project-card cursor-interactive"
+                key={`${project.id}-${i}`}
+                aria-hidden={i >= GROUPED_PROJECTS.length}
                 onClick={() => setActiveModalProject(project)}
-                className="project-card cursor-interactive"
               >
-                <div className="project-image-box">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                  />
-                  <div className="project-image-overlay">
-                    <span className="overlay-btn">
-                      <Eye size={16} color="#0a0a0a" />
-                      <span>Inspect Slide Deck</span>
+                <div className="cs-mockup">
+                  <div className="cs-mockup-bar">
+                    <span className="cs-mockup-dots">
+                      <span /><span /><span />
                     </span>
+                    <Menu size={13} color="var(--text-muted)" />
                   </div>
-                  <div className="project-image-tag">
-                    {project.category}
+                  <div className="project-image-box">
+                    <img src={project.image} alt={project.title} draggable={false} />
+                    <div className="project-image-overlay">
+                      <span className="overlay-btn">
+                        <Eye size={16} color="#0a0a0a" />
+                        <span>Inspect Slide Deck</span>
+                      </span>
+                    </div>
+                    <div className="project-image-tag">
+                      {project.category}
+                    </div>
                   </div>
                 </div>
 
@@ -84,10 +89,10 @@ export const PortfolioShowcase: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Project Inspection Modal */}
         <ProjectModal

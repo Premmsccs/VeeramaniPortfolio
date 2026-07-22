@@ -1,21 +1,60 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Globe, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Globe, CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { MagneticButton } from './MagneticButton';
 
-export const ContactSection: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', projectType: 'SaaS Pitch Deck', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+/* Free at emailjs.com — connect your Gmail as a Service, build a Template, grab these three IDs */
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
-  const handleSubmit = (e: React.FormEvent) => {
+const EMPTY_FORM = { name: '', email: '', projectType: 'Job Opportunity', message: '' };
+
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
+export const ContactSection: React.FC = () => {
+  const [formData, setFormData] = useState(EMPTY_FORM);
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', projectType: 'SaaS Pitch Deck', message: '' });
-      setSubmitted(false);
-    }, 5000);
+    if (status === 'sending') return;
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatus('error');
+      setErrorMsg('The contact form is not connected yet (missing EmailJS keys).');
+      return;
+    }
+
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          reason: formData.projectType,
+          message: formData.message
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+
+      setStatus('success');
+      setTimeout(() => {
+        setFormData(EMPTY_FORM);
+        setStatus('idle');
+      }, 8000);
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong while sending.');
+    }
   };
 
   return (
@@ -32,13 +71,13 @@ export const ContactSection: React.FC = () => {
         >
           <div className="hero-role-pill">
             <MessageSquare size={16} color="var(--accent-gold)" />
-            <span>Direct Executive Booking</span>
+            <span>Get In Touch</span>
           </div>
           <h2 className="section-head-title">
-            Let's Build Your Next High-Stakes Presentation
+            Let's Connect
           </h2>
           <p className="section-head-subtitle">
-            Available immediately for full-time corporate roles, contractual agency retainers, and high-priority Series-A / investor pitch deck transformations.
+            Open to full-time roles, freelance projects, and design collaborations. Send a message and I'll get back to you soon.
           </p>
         </motion.div>
 
@@ -53,9 +92,9 @@ export const ContactSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="contact-details-card"
           >
-            <h3 className="contact-details-title">Direct Contact Channel</h3>
+            <h3 className="contact-details-title">Contact Details</h3>
             <p className="contact-details-lead">
-              Reach out via email or phone for immediate pricing estimates, NDA execution, or to request custom sample slides tailored to your brand.
+              Reach out via email or phone — happy to share my portfolio, resume, or discuss any opportunity.
             </p>
 
             <div className="contact-links-list">
@@ -65,7 +104,7 @@ export const ContactSection: React.FC = () => {
                   <Mail size={20} />
                 </div>
                 <div className="contact-link-info">
-                  <span className="contact-link-lbl">Primary Email (24/7 Response)</span>
+                  <span className="contact-link-lbl">Email</span>
                   <span className="contact-link-val">{PERSONAL_INFO.email}</span>
                 </div>
               </motion.a>
@@ -75,7 +114,7 @@ export const ContactSection: React.FC = () => {
                   <Phone size={20} />
                 </div>
                 <div className="contact-link-info">
-                  <span className="contact-link-lbl">Phone & WhatsApp Direct</span>
+                  <span className="contact-link-lbl">Phone / WhatsApp</span>
                   <span className="contact-link-val">{PERSONAL_INFO.phone}</span>
                 </div>
               </motion.a>
@@ -85,7 +124,7 @@ export const ContactSection: React.FC = () => {
                   <MapPin size={20} />
                 </div>
                 <div className="contact-link-info">
-                  <span className="contact-link-lbl">Location & Work Setup</span>
+                  <span className="contact-link-lbl">Location</span>
                   <span className="contact-link-val">Chennai, Tamil Nadu, India • Remote & On-Site</span>
                 </div>
               </div>
@@ -118,11 +157,11 @@ export const ContactSection: React.FC = () => {
             className="contact-form-card"
           >
             <div className="contact-form-header">
-              <h3 className="contact-form-title">Consultation & Project Inquiry</h3>
-              <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent-gold)' }}>⚡ Fast Turnaround</span>
+              <h3 className="contact-form-title">Send a Message</h3>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent-gold)' }}>⚡ Quick Reply</span>
             </div>
 
-            {submitted ? (
+            {status === 'success' ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -145,20 +184,21 @@ export const ContactSection: React.FC = () => {
                 >
                   <CheckCircle size={48} color="#34d399" />
                 </motion.div>
-                <h4 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--text-primary)' }}>Inquiry Received Successfully!</h4>
+                <h4 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--text-primary)' }}>Message Sent!</h4>
                 <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                  Thank you for reaching out, <strong>{formData.name || 'Executive Client'}</strong>. Veeramani has received your project briefing and will get back to you within 2 hours with a preliminary timeline and deck structure.
+                  Thanks, <strong>{formData.name || 'there'}</strong>! Your message has landed in the inbox and you'll hear back at <strong>{formData.email}</strong> soon. For anything urgent, call{' '}
+                  <a href={`tel:${PERSONAL_INFO.phone}`} style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>{PERSONAL_INFO.phone}</a>.
                 </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className="form-row">
                   <div className="form-field">
-                    <label className="form-label">Full Name / Executive Title *</label>
+                    <label className="form-label">Full Name *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Sarah Jenkins (VP Marketing)"
+                      placeholder="Your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="form-input"
@@ -166,11 +206,11 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="form-field">
-                    <label className="form-label">Corporate Email Address *</label>
+                    <label className="form-label">Email Address *</label>
                     <input
                       type="email"
                       required
-                      placeholder="s.jenkins@enterprise.com"
+                      placeholder="you@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="form-input"
@@ -179,39 +219,78 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="form-field">
-                  <label className="form-label">Presentation Requirement Category</label>
+                  <label className="form-label">Reason for Contact</label>
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="form-select"
                   >
-                    <option value="SaaS Pitch Deck">Series-A / IPO SaaS Pitch Deck</option>
-                    <option value="Corporate Profile">Executive Board Overview / Annual Report</option>
-                    <option value="Infographic Redesign">High-Density Infographic & Financial Model</option>
-                    <option value="Full Time Hiring">Full-Time / Contractual Senior Designer Role</option>
+                    <option value="Job Opportunity">Job Opportunity</option>
+                    <option value="Freelance Project">Freelance Project</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="General Inquiry">General Inquiry</option>
                   </select>
                 </div>
 
                 <div className="form-field">
-                  <label className="form-label">Project Briefing & Slide Count *</label>
+                  <label className="form-label">Message *</label>
                   <textarea
                     rows={4}
                     required
-                    placeholder="Briefly describe your deck objectives, slide count (e.g. 15 slides), and desired completion deadline..."
+                    placeholder="Tell me a bit about the role, project, or opportunity..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="form-textarea"
                   />
                 </div>
 
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      background: 'rgba(248, 113, 113, 0.08)',
+                      border: '1px solid rgba(248, 113, 113, 0.4)',
+                      borderRadius: '12px',
+                      padding: '12px 14px',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    <AlertTriangle size={18} color="#f87171" style={{ flexShrink: 0, marginTop: '1px' }} />
+                    <span style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                      Couldn't send your message ({errorMsg}). Please call{' '}
+                      <a href={`tel:${PERSONAL_INFO.phone}`} style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>
+                        {PERSONAL_INFO.phone}
+                      </a> instead.
+                    </span>
+                  </motion.div>
+                )}
+
                 <MagneticButton
                   type="submit"
                   className="btn-primary"
+                  disabled={status === 'sending'}
                   style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
                 >
-                  <span>Submit Executive Briefing</span>
-                  <Send size={16} color="#0a0a0a" />
+                  {status === 'sending' ? (
+                    <>
+                      <span>Sending…</span>
+                      <Loader2 size={16} color="#0a0a0a" className="spin-loader" />
+                    </>
+                  ) : (
+                    <>
+                      <span>{status === 'error' ? 'Retry Sending' : 'Send Message'}</span>
+                      <Send size={16} color="#0a0a0a" />
+                    </>
+                  )}
                 </MagneticButton>
+
+                <p style={{ fontSize: '11px', color: 'var(--text-secondary)', textAlign: 'center', marginTop: '12px', opacity: 0.75 }}>
+                  Sends directly — usually a reply within 24 hours.
+                </p>
               </form>
             )}
           </motion.div>

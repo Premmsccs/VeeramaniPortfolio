@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
   const handleResumeDownload = () => {
     const link = document.createElement('a');
     link.href = PERSONAL_INFO.resumeUrl;
-    link.download = 'Veeramani_K_Presentation_Designer_Resume.docx';
+    link.download = 'Veeramani_K_Presentation_Designer_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

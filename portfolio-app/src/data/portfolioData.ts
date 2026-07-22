@@ -39,9 +39,6 @@ export const GALLERY_DATA: GalleryItem[] = [
   { id: 'g17', title: 'What is a Raven?', category: 'presentation', image: '/assets/gallery/g17.jpeg' },
   { id: 'g18', title: 'National Raspberry Day', category: 'presentation', image: '/assets/gallery/g18.jpeg' },
   { id: 'g19', title: 'Real Estate', category: 'presentation', image: '/assets/gallery/g19.jpeg' },
-  { id: 'g20', title: 'Biology — Human Reproduction', category: 'presentation', image: '/assets/gallery/g20.jpeg' },
-  { id: 'g21', title: 'The Human Reproduction', category: 'presentation', image: '/assets/gallery/g21.jpeg' },
-  { id: 'g22', title: 'Sex Determination', category: 'presentation', image: '/assets/gallery/g22.jpeg' },
   { id: 'g23', title: 'Cyberattack', category: 'presentation', image: '/assets/gallery/g23.jpeg' },
   { id: 'g24', title: 'Social Awareness', category: 'presentation', image: '/assets/gallery/g24.jpeg' },
   { id: 'g25', title: 'Digital Lending', category: 'presentation', image: '/assets/gallery/g25.jpeg' },
@@ -65,7 +62,13 @@ export const GALLERY_DATA: GalleryItem[] = [
   // --- Dashboards ---
   { id: 'g12', title: 'Social Media Dashboard', category: 'dashboard', image: '/assets/gallery/g12.jpeg' },
   { id: 'g13', title: 'Sales Dashboard', category: 'dashboard', image: '/assets/gallery/g13.jpeg' },
-  { id: 'g15', title: 'Social Media Analytics Dashboard', category: 'dashboard', image: '/assets/gallery/g15.jpeg' }
+  { id: 'g15', title: 'Social Media Analytics Dashboard', category: 'dashboard', image: '/assets/gallery/g15.jpeg' },
+  { id: 'g34', title: 'Social Media Engagement Dashboard', category: 'dashboard', image: '/assets/gallery/g34.jpeg' },
+  { id: 'g35', title: 'Social Media Channel Dashboard', category: 'dashboard', image: '/assets/gallery/g35.jpeg' },
+  { id: 'g36', title: 'Sales Performance Dashboard', category: 'dashboard', image: '/assets/gallery/g36.jpeg' },
+  { id: 'g37', title: 'Marketing Campaign Dashboard', category: 'dashboard', image: '/assets/gallery/g37.jpeg' },
+  { id: 'g38', title: 'Marketing Performance Dashboard', category: 'dashboard', image: '/assets/gallery/g38.jpeg' },
+  { id: 'g39', title: 'Business Infographic Dashboard', category: 'dashboard', image: '/assets/gallery/g39.jpeg' }
 ];
 
 export interface Skill {
@@ -91,9 +94,10 @@ export const PERSONAL_INFO = {
   email: 'veeramani2252001@gmail.com',
   phone: '+91 6382062964',
   location: 'Chennai, Tamil Nadu, India',
-  linkedin: 'https://www.linkedin.com/in/veeramani-k-8736a4308/',
+  linkedin: 'https://linkedin.com/in/veeramani-k',
   behance: 'https://www.behance.net/veeramanik2',
-  resumeUrl: '/Veeramani_Resume.docx',
+  resumeUrl: '/Veeramani_Resume.pdf',
+  calendly: 'https://calendly.com/veeramani',
   availability: 'Immediate',
   stats: [
     { label: 'Presentations Delivered', value: '1,500+', icon: 'Briefcase' },
@@ -109,9 +113,9 @@ export const PROJECTS_DATA: Project[] = [
     id: 'redesign-core-1',
     title: 'Executive Slide Transformation: Outdated to High-Impact SaaS Deck',
     category: 'redesign',
-    image: '/assets/portfolio/image26.png',
-    beforeImage: '/assets/portfolio/image25.png',
-    afterImage: '/assets/portfolio/image26.png',
+    image: '/assets/portfolio/image25.png',
+    beforeImage: '/assets/portfolio/image26.png',
+    afterImage: '/assets/portfolio/image25.png',
     description: 'Complete visual overhaul of an outdated text-heavy slide into a clean, modern, high-engagement visual hierarchy tailored for C-suite investor meetings.',
     tags: ['Slide Redesign', 'Visual Hierarchy', 'Brand Alignment', 'Typography'],
     metrics: '3x Faster Comprehension Rate',
@@ -302,12 +306,11 @@ export const EXPERIENCE_DATA: Experience[] = [
     type: 'Full-Time Professional',
     location: 'Chennai, India',
     achievements: [
-      'Designed professional presentation slides including business plans, corporate pitch decks, marketing dashboards, and infographic-rich data visualization slides.',
-      'Created clean, visually consistent layouts that dramatically improved audience engagement and communication clarity for global executive clients.',
-      'Delivered fully editable, high-quality presentation templates deployed on SlideEgg\'s content platform, contributing directly to SEO-driven traffic growth and user downloads.',
-      'Collaborated on competitive content analysis to identify keyword and design gaps, guiding new template creation in education, Venn diagrams, and high-demand business categories.',
-      'Adhered strictly to brand guidelines and modern design principles to ensure professional, consistent output across more than 1,500+ deliverable assets.',
-      'Utilized Microsoft PowerPoint, Adobe Illustrator, Canva, and Google Slides to produce presentation collateral perfectly aligned with client brand standards.'
+      'Designed professional presentation slides including business plans, corporate pitch decks, and infographic-rich data visualizations.',
+      'Created clean, visually consistent layouts that dramatically improved audience engagement for global executive clients.',
+      'Delivered fully editable, SEO-optimized presentation templates deployed on SlideEgg’s platform, driving traffic growth and downloads.',
+      'Adhered strictly to brand guidelines across 1,500+ deliverables using PowerPoint, Illustrator, and Canva.',
+      'Utilized competitive content analysis to pioneer high-ranking presentation templates across multiple business categories.'
     ],
     toolsUsed: ['Microsoft PowerPoint', 'Adobe Illustrator', 'Canva Pro', 'Google Slides', 'SEO Analytics', 'Vector Graphics']
   },
@@ -318,10 +321,11 @@ export const EXPERIENCE_DATA: Experience[] = [
     type: 'Internship -> Promoted to Full-Time',
     location: 'Chennai, India',
     achievements: [
-      'Gained intensive hands-on experience in professional presentation design, infographic creation, and visual storytelling across diverse business and corporate domains.',
-      'Successfully completed all assigned high-stakes projects on time, demonstrating self-motivation and a proactive approach to rapid skill mastery.',
+      'Gained intensive hands-on experience in professional presentation design, infographic creation, and visual storytelling.',
+      'Successfully completed all assigned high-stakes projects on time, demonstrating a proactive approach to rapid skill mastery.',
       'Mastered the transition of raw text notes and complex Excel data into highly scannable, audience-ready presentation slide decks.',
-      'Contributed to internal UI/UX discussions on presentation hierarchy and custom master slide mechanics.'
+      'Contributed to internal UI/UX discussions on presentation hierarchy and custom master slide mechanics.',
+      'Collaborated closely with senior designers to refine typography, color theory, and advanced infographic vector layouts.'
     ],
     toolsUsed: ['Microsoft PowerPoint', 'Canva', 'Infographic Design', 'Color Theory', 'Typography']
   }
@@ -354,28 +358,45 @@ export const CERTIFICATIONS_DATA = [
     issuer: 'Anthropic',
     date: 'May 2026',
     category: 'AI & Prompt Engineering',
-    icon: 'Sparkles'
+    icon: 'Sparkles',
+    pdfUrl: '/assets/certificates/claude-101.pdf',
+    orientation: 'landscape'
   },
   {
     name: 'Presentation Skills Certification',
     issuer: 'TCS iON (Tata Consultancy Services)',
     date: 'May 2026',
     category: 'Professional Design Mastery',
-    icon: 'Award'
+    icon: 'Award',
+    pdfUrl: '/assets/certificates/tcs-presentation.pdf',
+    orientation: 'landscape'
   },
   {
     name: 'Communication Skills Certification',
     issuer: 'TCS iON (Tata Consultancy Services)',
     date: 'May 2026',
     category: 'Executive Communication',
-    icon: 'MessageSquare'
+    icon: 'MessageSquare',
+    pdfUrl: '/assets/certificates/tcs-communication.pdf',
+    orientation: 'landscape'
   },
   {
     name: 'Diploma in Computer Application (DCA)',
     issuer: 'PixelTechz Training & Development, Thanjavur',
     date: 'Mar – May 2024',
     category: 'Software Architecture',
-    icon: 'Monitor'
+    icon: 'Monitor',
+    pdfUrl: '/assets/certificates/certificate-dca.png',
+    orientation: 'portrait'
+  },
+  {
+    name: 'Internship Completion Letter',
+    issuer: 'SlideEgg (Deckzi Solutions Pvt. Ltd.)',
+    date: 'Jan 2025',
+    category: 'Professional Experience',
+    icon: 'Briefcase',
+    pdfUrl: '/assets/certificates/internship-letter.pdf',
+    orientation: 'portrait'
   }
 ];
 

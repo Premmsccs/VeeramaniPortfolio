@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { CustomerFeedback } from './components/CustomerFeedback';
 import { BeforeAfterSuite } from './components/BeforeAfterSuite';
 import { CoverflowGallery } from './components/CoverflowGallery';
 import { PortfolioShowcase } from './components/PortfolioShowcase';
@@ -8,6 +9,7 @@ import { SkillsMatrix } from './components/SkillsMatrix';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { ContactSection } from './components/ContactSection';
 import { AnimatedBackground } from './components/AnimatedBackground';
+import { AnimeJsBackground } from './components/AnimeJsBackground';
 import { ScrollProgress } from './components/ScrollProgress';
 import { VeeraAssistant } from './components/VeeraAssistant';
 import { motion } from 'framer-motion';
@@ -40,6 +42,7 @@ export const App: React.FC = () => {
     <div>
       {/* Ambient Aurora Background System */}
       <AnimatedBackground />
+      <AnimeJsBackground />
 
       {/* Scroll Depth Indicator */}
       <ScrollProgress />
@@ -53,6 +56,7 @@ export const App: React.FC = () => {
         <BeforeAfterSuite />
         <CoverflowGallery />
         <PortfolioShowcase />
+        <CustomerFeedback />
         <SkillsMatrix />
         <ExperienceTimeline />
         <ContactSection />

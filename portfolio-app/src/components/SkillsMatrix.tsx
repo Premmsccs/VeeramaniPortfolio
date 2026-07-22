@@ -1,7 +1,32 @@
-import React from 'react';
-import { Award, CheckCircle, Zap, Shield, Clock, Layers } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { Award, CheckCircle, Zap, Shield, Clock, Layers, Flame } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 import { SKILLS_DATA } from '../data/portfolioData';
+
+// Counts up from 0 to the skill's level once the card scrolls into view —
+// synced to the same duration/delay as the ring stroke animation.
+const CountUpPct: React.FC<{ value: number; delay: number }> = ({ value, delay }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const startTimer = window.setTimeout(() => {
+      const duration = 1100;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - start) / duration);
+        setDisplay(Math.round(value * (1 - Math.pow(1 - progress, 3))));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, delay * 1000);
+    return () => window.clearTimeout(startTimer);
+  }, [inView, value, delay]);
+
+  return <span ref={ref}>{display}</span>;
+};
 
 export const SkillsMatrix: React.FC = () => {
   const whyChooseReasons = [
@@ -79,35 +104,54 @@ export const SkillsMatrix: React.FC = () => {
             </svg>
 
             <div className="skills-rings">
-              {SKILLS_DATA.filter((s) => s.category === 'core').map((skill, idx) => {
+              {(() => {
+                const coreSkills = SKILLS_DATA.filter((s) => s.category === 'core');
+                const topLevel = Math.max(...coreSkills.map((s) => s.level));
                 const R = 52;
                 const C = 2 * Math.PI * R;
-                return (
-                  <div key={idx} className="skill-ring-card">
-                    <div className="skill-ring-wrap">
-                      <svg viewBox="0 0 120 120" className="skill-ring">
-                        <circle className="skill-ring-track" cx="60" cy="60" r={R} />
-                        <motion.circle
-                          className="skill-ring-bar"
-                          cx="60"
-                          cy="60"
-                          r={R}
-                          strokeDasharray={C}
-                          initial={{ strokeDashoffset: C }}
-                          whileInView={{ strokeDashoffset: C - (C * skill.level) / 100 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.1, delay: idx * 0.08, ease: 'easeOut' }}
-                        />
-                      </svg>
-                      <span className="skill-ring-pct">
-                        {skill.level}
-                        <small>%</small>
-                      </span>
-                    </div>
-                    <span className="skill-ring-name">{skill.name}</span>
-                  </div>
-                );
-              })}
+                return coreSkills.map((skill, idx) => {
+                  const isTop = skill.level === topLevel;
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.5, delay: idx * 0.08 }}
+                      whileHover={{ y: -6 }}
+                      className={isTop ? 'skill-ring-card is-top' : 'skill-ring-card'}
+                    >
+                      {isTop && (
+                        <span className="skill-ring-badge">
+                          <Flame size={11} />
+                          Top Skill
+                        </span>
+                      )}
+                      <div className="skill-ring-wrap">
+                        <svg viewBox="0 0 120 120" className="skill-ring">
+                          <circle className="skill-ring-track" cx="60" cy="60" r={R} />
+                          <motion.circle
+                            className="skill-ring-bar"
+                            cx="60"
+                            cy="60"
+                            r={R}
+                            strokeDasharray={C}
+                            initial={{ strokeDashoffset: C }}
+                            whileInView={{ strokeDashoffset: C - (C * skill.level) / 100 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.1, delay: idx * 0.08, ease: 'easeOut' }}
+                          />
+                        </svg>
+                        <span className="skill-ring-pct">
+                          <CountUpPct value={skill.level} delay={idx * 0.08} />
+                          <small>%</small>
+                        </span>
+                      </div>
+                      <span className="skill-ring-name">{skill.name}</span>
+                    </motion.div>
+                  );
+                });
+              })()}
             </div>
           </motion.div>
 
@@ -150,12 +194,26 @@ export const SkillsMatrix: React.FC = () => {
 
         {/* Tools & Software */}
         <div className="tools-row">
-          {toolNames.map((name) => (
-            <span key={name} className="tool-chip">
-              <CheckCircle size={14} color="var(--accent-gold)" />
-              {name}
-            </span>
-          ))}
+          {toolNames.map((name) => {
+             let logoUrl = '';
+             if (name.includes('PowerPoint')) logoUrl = '/assets/tools/powerpoint.png';
+             else if (name.includes('Illustrator')) logoUrl = '/assets/tools/illustrator.png';
+             else if (name.includes('Canva')) logoUrl = '/assets/tools/canva.png';
+             else if (name.includes('Photoshop')) logoUrl = '/assets/tools/photoshop.png';
+             else if (name.includes('Google Slides')) logoUrl = '/assets/tools/google-slides.png';
+             else if (name.includes('Claude AI')) logoUrl = '/assets/tools/claude-ai.svg';
+
+             return (
+               <span key={name} className="tool-chip">
+                 {logoUrl ? (
+                   <img src={logoUrl} alt={`${name} logo`} style={{ width: 18, height: 18, objectFit: 'contain' }} />
+                 ) : (
+                   <CheckCircle size={16} color="var(--accent-gold)" />
+                 )}
+                 {name}
+               </span>
+             );
+          })}
         </div>
 
       </div>

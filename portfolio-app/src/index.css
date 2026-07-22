@@ -294,6 +294,10 @@ button {
   to { transform: rotate(360deg); }
 }
 
+.spin-loader {
+  animation: spin-slow 0.8s linear infinite;
+}
+
 @keyframes cursor-pulse {
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
   50% { transform: translate(-50%, -50%) scale(1.25); }

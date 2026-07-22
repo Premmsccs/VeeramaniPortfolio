@@ -25,6 +25,15 @@ export const CoverflowGallery: React.FC = () => {
   }, []);
   const spread = sideCount === 1 ? 58 : 50;
 
+  /* Only real hover-capable pointers (a mouse) should be able to pause
+     auto-advance on hover. Touch/pen devices report `pointerType` unreliably
+     across browsers (some fire a synthetic "enter" after a tap with no
+     matching "leave"), which used to wedge the carousel paused forever. A
+     one-time device-capability check sidesteps that entirely. */
+  const [supportsHover] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+
   const items = GALLERY_DATA.filter((g) => g.category === activeCat);
   const count = items.length;
 
@@ -87,8 +96,12 @@ export const CoverflowGallery: React.FC = () => {
   const swiped = useRef(false);
 
   const onPointerDown = (e: React.PointerEvent) => {
+    // Do not intercept clicks meant for the navigation arrows or dots
+    if ((e.target as HTMLElement).closest('button')) return;
+    
     dragStart.current = e.clientX;
     swiped.current = false;
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStart.current === null) return;
@@ -101,6 +114,13 @@ export const CoverflowGallery: React.FC = () => {
   };
   const onPointerLeave = () => {
     dragStart.current = null;
+  };
+
+  const onStageEnter = () => {
+    // Intentionally left blank: user requested auto-play to continue on hover
+  };
+  const onStageLeave = () => {
+    if (supportsHover) setPaused(false);
   };
 
   /* A pointerdown+pointerup pair also emits a click. Without this, a swipe would
@@ -156,12 +176,17 @@ export const CoverflowGallery: React.FC = () => {
         {/* Coverflow Stage */}
         <div
           className="cf-stage"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
+          onPointerEnter={onStageEnter}
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
-          onPointerLeave={onPointerLeave}
-          onPointerCancel={onPointerLeave}
+          onPointerLeave={() => {
+            onPointerLeave();
+            onStageLeave();
+          }}
+          onPointerCancel={() => {
+            onPointerLeave();
+            onStageLeave();
+          }}
           onClickCapture={onClickCapture}
         >
           <div className="cf-glow" aria-hidden="true" />
@@ -254,8 +279,8 @@ export const CoverflowGallery: React.FC = () => {
         {/* Dots */}
         <div
           className="cf-dots"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
+          onPointerEnter={onStageEnter}
+          onPointerLeave={onStageLeave}
         >
           {items.map((item, i) => (
             <button

@@ -3,19 +3,31 @@ import { Sliders, ArrowRightLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const BeforeAfterSuite: React.FC = () => {
-  const [sliderPos, setSliderPos] = useState(50);
   const [activeTab, setActiveTab] = useState<'slider' | 'sideBySide' | 'principles'>('slider');
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+  const updatePos = (clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const pos = ((clientX - rect.left) / rect.width) * 100;
-    if (pos >= 0 && pos <= 100) {
-      setSliderPos(pos);
-    }
+    setSliderPos(Math.min(100, Math.max(0, pos)));
   };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    updatePos(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    updatePos(e.clientX);
+  };
+
+  const stopDragging = () => setIsDragging(false);
 
   const principles = [
     {
@@ -107,43 +119,41 @@ export const BeforeAfterSuite: React.FC = () => {
             >
               <div
                 ref={containerRef}
-                onMouseMove={handleMouseMove}
-                onTouchMove={handleMouseMove}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={stopDragging}
+                onPointerCancel={stopDragging}
                 className="slider-wrapper"
+                style={{ touchAction: 'none', cursor: 'ew-resize' }}
               >
                 {/* AFTER IMAGE (Background / Full Width) */}
                 <img
-                  src="/assets/portfolio/image26.png"
+                  src="/assets/portfolio/image25.png"
                   alt="After Redesign by Veeramani K"
                   className="slider-img"
+                  draggable={false}
                 />
                 <div className="slider-overlay-label label-after">
                   AFTER: Executive SaaS Slide Deck (Veeramani K)
                 </div>
 
-                {/* BEFORE IMAGE LAYER (Clipped by Slider Position) */}
+                {/* BEFORE IMAGE LAYER (Full width, clipped by Slider Position) */}
                 <div
                   style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     height: '100%',
-                    width: `${sliderPos}%`,
-                    overflow: 'hidden'
+                    width: '100%',
+                    overflow: 'hidden',
+                    clipPath: `inset(0 ${100 - sliderPos}% 0 0)`
                   }}
                 >
                   <img
-                    src="/assets/portfolio/image25.png"
-                    alt="Before Outdated Draft"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      height: '100%',
-                      width: 'auto',
-                      maxWidth: 'none',
-                      display: 'block'
-                    }}
+                    src="/assets/portfolio/image26.png"
+                    alt="Before Unpolished Draft"
+                    className="slider-img"
+                    draggable={false}
                   />
                   <div className="slider-overlay-label label-before">
                     BEFORE: Unpolished Initial Draft
@@ -185,7 +195,7 @@ export const BeforeAfterSuite: React.FC = () => {
                   <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>Cluttered & Dense</span>
                 </div>
                 <div className="comparison-img-box">
-                  <img src="/assets/portfolio/image25.png" alt="Before Draft" />
+                  <img src="/assets/portfolio/image26.png" alt="Before Draft" />
                 </div>
                 <p className="comparison-desc">
                   Lacks visual hierarchy, contrast, and scannable metrics. Text blocks require high reading effort and fail to direct executive focus.
@@ -200,7 +210,7 @@ export const BeforeAfterSuite: React.FC = () => {
                   <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--accent-gold)' }}>100% Editable Vector</span>
                 </div>
                 <div className="comparison-img-box">
-                  <img src="/assets/portfolio/image26.png" alt="After Redesign" />
+                  <img src="/assets/portfolio/image25.png" alt="After Redesign" />
                 </div>
                 <p className="comparison-desc" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                   Transformative 3-column architecture, high-trust titanium slate aesthetic, bespoke iconography, and instant executive data comprehension.
