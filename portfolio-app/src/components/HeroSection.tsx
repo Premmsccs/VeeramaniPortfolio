@@ -15,14 +15,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
     offset: ["start start", "end start"]
   });
 
-  const headingScale = useTransform(scrollYProgress, [0, 1], [1, 2.5]);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  const headingScale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 1.3 : 2.5]);
   const headingOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 60 : 150]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const profileY = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const profileScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const profileY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 80 : 300]);
+  const profileScale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 0.9 : 0.8]);
   const profileOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const [roleIndex, setRoleIndex] = useState(0);
   const roles = [

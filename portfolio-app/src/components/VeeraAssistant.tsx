@@ -194,10 +194,32 @@ export const VeeraAssistant: React.FC = () => {
     [messages, loading]
   );
 
+  /* Create a dedicated container as the VERY LAST child of body.
+     This guarantees it paints on top of everything in the document,
+     regardless of GPU compositor layer ordering on mobile browsers. */
+  const [portalContainer] = useState(() => {
+    const existing = document.getElementById('veera-ai-portal');
+    if (existing) return existing;
+    const el = document.createElement('div');
+    el.id = 'veera-ai-portal';
+    el.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:2147483647;';
+    document.body.appendChild(el);
+    return el;
+  });
+
   return createPortal(
     <>
       {/* Compact circular launcher (corner of screen) */}
-      <div className="va-fab-wrap">
+      <div
+        className="va-fab-wrap"
+        style={{
+          position: 'fixed',
+          bottom: 18,
+          right: 10,
+          zIndex: 2147483647,
+          pointerEvents: 'auto',
+        }}
+      >
         <motion.button
           className="va-fab"
           aria-label={open ? 'Close Veera AI assistant' : 'Open Veera AI assistant'}
@@ -245,6 +267,7 @@ export const VeeraAssistant: React.FC = () => {
         {open && (
           <motion.div
             className="va-panel"
+            style={{ pointerEvents: 'auto', zIndex: 2147483647 }}
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
@@ -332,6 +355,6 @@ export const VeeraAssistant: React.FC = () => {
         )}
       </AnimatePresence>
     </>,
-    document.body
+    portalContainer
   );
 };
