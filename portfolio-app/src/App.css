@@ -134,6 +134,7 @@ main {
   margin-top: 84px;
   position: relative;
   z-index: 1;
+  isolation: isolate; /* Trap all child stacking contexts (transforms, will-change) inside main */
 }
 
 /* Anchor targets must clear the fixed navbar when jumped/scrolled to */
@@ -3333,7 +3334,7 @@ main > section[id] {
   position: fixed;
   bottom: 18px;
   right: 10px;
-  z-index: 1500;
+  z-index: 2147483647;
 }
 
 @media (max-width: 768px) {
@@ -3413,7 +3414,7 @@ main > section[id] {
   position: fixed;
   bottom: 74px;
   right: 10px;
-  z-index: 1600;
+  z-index: 2147483647;
   width: min(372px, calc(100vw - 20px));
   height: min(540px, calc(100vh - 110px));
   display: flex;
