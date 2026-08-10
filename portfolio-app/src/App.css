@@ -234,7 +234,8 @@ main > section[id] {
 
 @media (max-width: 480px) {
   .brand-subtitle {
-    display: none;
+    font-size: 9px;
+    letter-spacing: 0.05em;
   }
 }
 
@@ -309,7 +310,6 @@ main > section[id] {
 /* Small screens: compact the bar so nothing spills past the edge */
 @media (max-width: 560px) {
   .navbar-actions { gap: 8px; }
-  .brand-subtitle { display: none; }
   .navbar-actions .btn-primary span { display: none; }
   .navbar-actions .btn-primary { padding: 11px 13px; }
 }

@@ -10,9 +10,10 @@ export const ScrollReveal: React.FC<{ children: ReactNode }> = ({ children }) =>
   });
 
   // Scale down and fade out as it enters/leaves the viewport, creating a cinematic parallax effect
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
+  // Kept subtle to prevent sections from overlapping on mobile viewports
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.96, 1, 1, 0.96]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.2, 1, 1, 0.2]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [40, 0, 0, -40]);
 
   return (
     <motion.div 
