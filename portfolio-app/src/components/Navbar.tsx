@@ -47,12 +47,11 @@ export const Navbar: React.FC = () => {
 
         {/* Brand */}
         <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="logo-box cursor-interactive">
-          <div className="brand-info">
-            <div className="brand-text">
-              VEERAMANI <span>K</span>
-            </div>
+          <div className="nav-brand-title">
+            <span className="brand-name">VEERAMANI</span>
+            <span className="brand-accent"> K</span>
             <div className="brand-subtitle">
-              Presentation Architect
+              Presentation Designer
             </div>
           </div>
         </div>

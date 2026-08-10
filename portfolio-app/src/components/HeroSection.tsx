@@ -26,7 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
   const profileOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const [roleIndex, setRoleIndex] = useState(0);
   const roles = [
-    'Executive Presentation Architect',
+    'Executive Presentation Designer',
     'Series-A / IPO Pitch Deck Master',
     'Infographic & Data Storyteller',
     'AI Video & Slide Specialist'
@@ -121,7 +121,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             className="hero-lead"
             style={{ y: textY, opacity: textOpacity }}
           >
-            I am <strong>VEERAMANI K</strong>, a dedicated Presentation Architect with <strong>1.7+ years of full-time professional experience</strong> designing high-stakes corporate pitch decks, financial overviews, and strategic timelines for global enterprises. I specialize in turning complex data into compelling visual narratives using <strong>100% Native PowerPoint Shapes, Adobe Illustrator, Canva Pro, and AI Storyboarding</strong>.
+            I am <strong>VEERAMANI K</strong>, a dedicated Presentation Designer with <strong>1.7+ years of full-time professional experience</strong> designing high-stakes corporate pitch decks, financial overviews, and strategic timelines for global enterprises. I specialize in turning complex data into compelling visual narratives using <strong>100% Native PowerPoint Shapes, Adobe Illustrator, Canva Pro, and AI Storyboarding</strong>.
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-btn-group" style={{ y: textY, opacity: textOpacity }}>
