@@ -1,4 +1,5 @@
-import React, { useRef, ReactNode } from 'react';
+import React, { useRef } from 'react';
+import type { ReactNode } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export const ScrollReveal: React.FC<{ children: ReactNode }> = ({ children }) => {
