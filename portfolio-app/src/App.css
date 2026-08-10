@@ -314,6 +314,11 @@ main > section[id] {
   .navbar-actions .btn-primary { padding: 11px 13px; }
 }
 
+@media (max-width: 360px) {
+  .brand-text { font-size: 16px; }
+  .navbar-actions { gap: 6px; }
+}
+
 .availability-badge {
   display: flex;
   align-items: center;
@@ -973,6 +978,7 @@ main > section[id] {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
+  white-space: nowrap;
 }
 
 .label-before {
@@ -986,6 +992,24 @@ main > section[id] {
   background: rgba(10, 10, 10, 0.85);
   border: 1px solid var(--border-gold);
   color: var(--accent-gold);
+}
+
+.label-text-short {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .slider-overlay-label {
+    bottom: 14px;
+    padding: 6px 14px;
+    font-size: 10px;
+  }
+
+  .label-before { left: 14px; }
+  .label-after { right: 14px; }
+
+  .label-text-full { display: none; }
+  .label-text-short { display: inline; }
 }
 
 .slider-divider-line {
@@ -1749,10 +1773,6 @@ main > section[id] {
   gap: 14px;
 }
 
-@media (max-width: 1024px) {
-  .skills-rings { grid-template-columns: repeat(3, 1fr); }
-}
-
 @media (max-width: 560px) {
   .skills-rings { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1975,7 +1995,7 @@ main > section[id] {
 /* --- EXPERIENCE & CREDENTIALS --- */
 .experience-timeline {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 24px;
   margin-bottom: 64px;
 }
@@ -2095,13 +2115,13 @@ main > section[id] {
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
   gap: 20px;
 }
 
 .education-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -2469,7 +2489,7 @@ main > section[id] {
   backdrop-filter: var(--blur-glass);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
   .chatbot-window {
     width: calc(100vw - 32px);
     right: 16px;
@@ -3316,6 +3336,16 @@ main > section[id] {
   z-index: 1500;
 }
 
+@media (max-width: 768px) {
+  .va-fab-wrap {
+    bottom: 24px !important;
+    right: 16px !important;
+    z-index: 2147483647 !important; /* Maximum possible z-index */
+    display: block !important;
+    transform: translateZ(0); /* Force hardware acceleration and stacking context */
+  }
+}
+
 .va-fab {
   position: relative;
   width: 46px;
@@ -3395,6 +3425,17 @@ main > section[id] {
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   box-shadow: var(--shadow-xl);
+}
+
+@media (max-width: 768px) {
+  .va-panel {
+    bottom: 80px !important;
+    right: 10px !important;
+    z-index: 2147483647 !important;
+    height: min(480px, calc(100vh - 120px));
+    display: flex !important;
+    transform: translateZ(0);
+  }
 }
 
 /* --- Header --- */

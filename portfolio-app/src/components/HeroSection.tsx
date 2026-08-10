@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Eye, CheckCircle, Award, Sparkles, ShieldCheck, FileSpreadsheet } from 'lucide-react';
-import { motion, AnimatePresence, type Variants, useMotionValue, useSpring } from 'framer-motion';
+import { ArrowRight, Eye, Award } from 'lucide-react';
+import { motion, AnimatePresence, type Variants, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 import { AnimatedCounter } from './AnimatedCounter';
 import { MagneticButton } from './MagneticButton';
 
@@ -9,6 +9,21 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const headingScale = useTransform(scrollYProgress, [0, 1], [1, 2.5]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const profileY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const profileScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const profileOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const [roleIndex, setRoleIndex] = useState(0);
   const roles = [
     'Executive Presentation Architect',
@@ -71,7 +86,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
   };
 
   return (
-    <section id="about" className="hero-section">
+    <section id="about" className="hero-section" ref={sectionRef}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -82,39 +97,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         {/* Left: Bio & Value Prop */}
         <div className="hero-info">
 
-          <motion.div variants={itemVariants} className="hero-role-pill">
+          <motion.div variants={itemVariants} className="hero-role-pill" style={{ y: textY, opacity: textOpacity }}>
             <Award size={16} color="var(--accent-gold)" />
             <span>Expert Presentation Designer • Visual Storytelling Specialist</span>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="hero-heading">
+          <motion.h1 
+            variants={itemVariants} 
+            className="hero-heading"
+            style={{ 
+              scale: headingScale, 
+              opacity: headingOpacity, 
+              y: textY,
+              transformOrigin: 'left center',
+              willChange: 'transform, opacity'
+            }}
+          >
             Transforming Complex Data Into <span>Audience-Ready</span> Executive Slide Decks.
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="hero-lead">
+          <motion.p 
+            variants={itemVariants} 
+            className="hero-lead"
+            style={{ y: textY, opacity: textOpacity }}
+          >
             I am <strong>VEERAMANI K</strong>, a dedicated Presentation Architect with <strong>1.7+ years of full-time professional experience</strong> designing high-stakes corporate pitch decks, financial overviews, and strategic timelines for global enterprises. I specialize in turning complex data into compelling visual narratives using <strong>100% Native PowerPoint Shapes, Adobe Illustrator, Canva Pro, and AI Storyboarding</strong>.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="hero-bullet-list">
-            <div className="hero-bullet">
-              <CheckCircle size={16} />
-              <span>100% Editable Native PPT Shapes</span>
-            </div>
-            <div className="hero-bullet">
-              <ShieldCheck size={16} />
-              <span>Strict NDA & 24hr Rapid Delivery</span>
-            </div>
-            <div className="hero-bullet">
-              <FileSpreadsheet size={16} />
-              <span>Dynamic Excel-Linked Charts</span>
-            </div>
-            <div className="hero-bullet">
-              <Sparkles size={16} />
-              <span>Anthropic Claude Certified Specialist</span>
-            </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="hero-btn-group">
+          <motion.div variants={itemVariants} className="hero-btn-group" style={{ y: textY, opacity: textOpacity }}>
             <MagneticButton onClick={onExploreClick} className="btn-primary">
               <span>Explore Master Case Studies</span>
               <ArrowRight size={16} color="#0a0a0a" />
@@ -127,7 +137,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
           </motion.div>
 
           {/* Key Metrics Grid */}
-          <motion.div variants={itemVariants} className="hero-stats">
+          <motion.div variants={itemVariants} className="hero-stats" style={{ y: textY, opacity: textOpacity }}>
             <motion.div whileHover={{ y: -4 }} className="hero-stat-card">
               <AnimatedCounter value="1500+" className="hero-stat-num" />
               <span className="hero-stat-lbl">Presentations Delivered</span>
@@ -138,7 +148,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             </motion.div>
             <motion.div whileHover={{ y: -4 }} className="hero-stat-card">
               <AnimatedCounter value="30+" className="hero-stat-num" />
-              <span className="hero-stat-lbl">Global Clients Served</span>
+              <span className="hero-stat-lbl">Enterprise Clients Served</span>
             </motion.div>
           </motion.div>
 
@@ -148,6 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         <motion.div
           variants={itemVariants}
           className="hero-profile-area"
+          style={{ y: profileY, scale: profileScale, opacity: profileOpacity, willChange: 'transform, opacity' }}
         >
           <motion.div
             ref={cardRef}

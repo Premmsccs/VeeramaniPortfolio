@@ -7,7 +7,7 @@ export const ExperienceTimeline: React.FC = () => {
   const [selectedCert, setSelectedCert] = useState<{ pdfUrl: string, orientation?: string } | null>(null);
 
   const education = [
-    { degree: 'Bachelor of Business Administration (BBA)', institution: 'University of Madras / Equivalent Corporate Studies', period: '2021 – 2024', details: 'Specialized in Business Communication, Strategic Marketing, and Corporate Presentation Storyboarding.' },
+    { degree: 'Bachelor of Business Administration (BBA)', institution: 'Bharathidasan University, Tiruchirappalli', period: '2021 – 2024', details: 'Specialized in Business Communication, Strategic Marketing, and Corporate Presentation Storyboarding.' },
     { degree: 'Diploma in Mechanical Engineering (DME)', institution: 'State Board of Technical Education', period: '2018 – 2021', details: 'Focused on Precision Engineering Drawing, CAD Vector Modeling, and Technical Infographics.' }
   ];
 

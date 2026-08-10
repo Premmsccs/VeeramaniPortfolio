@@ -126,18 +126,7 @@ export const BeforeAfterSuite: React.FC = () => {
                 className="slider-wrapper"
                 style={{ touchAction: 'none', cursor: 'ew-resize' }}
               >
-                {/* AFTER IMAGE (Background / Full Width) */}
-                <img
-                  src="/assets/portfolio/image25.png"
-                  alt="After Redesign by Veeramani K"
-                  className="slider-img"
-                  draggable={false}
-                />
-                <div className="slider-overlay-label label-after">
-                  AFTER: Executive SaaS Slide Deck (Veeramani K)
-                </div>
-
-                {/* BEFORE IMAGE LAYER (Full width, clipped by Slider Position) */}
+                {/* AFTER IMAGE LAYER (Full width, clipped from the left) */}
                 <div
                   style={{
                     position: 'absolute',
@@ -146,7 +135,37 @@ export const BeforeAfterSuite: React.FC = () => {
                     height: '100%',
                     width: '100%',
                     overflow: 'hidden',
-                    clipPath: `inset(0 ${100 - sliderPos}% 0 0)`
+                    clipPath: `inset(0 0 0 ${sliderPos}%)`,
+                    WebkitClipPath: `inset(0 0 0 ${sliderPos}%)`,
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)'
+                  }}
+                >
+                  <img
+                    src="/assets/portfolio/image25.png"
+                    alt="After Redesign by Veeramani K"
+                    className="slider-img"
+                    draggable={false}
+                  />
+                  <div className="slider-overlay-label label-after">
+                    <span className="label-text-full">AFTER: Executive SaaS Slide Deck (Veeramani K)</span>
+                    <span className="label-text-short">AFTER</span>
+                  </div>
+                </div>
+
+                {/* BEFORE IMAGE LAYER (Full width, clipped from the right) */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    height: '100%',
+                    width: '100%',
+                    overflow: 'hidden',
+                    clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+                    WebkitClipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)'
                   }}
                 >
                   <img
@@ -156,7 +175,8 @@ export const BeforeAfterSuite: React.FC = () => {
                     draggable={false}
                   />
                   <div className="slider-overlay-label label-before">
-                    BEFORE: Unpolished Initial Draft
+                    <span className="label-text-full">BEFORE: Unpolished Initial Draft</span>
+                    <span className="label-text-short">BEFORE</span>
                   </div>
                 </div>
 

@@ -10,7 +10,7 @@ const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | u
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
-const EMPTY_FORM = { name: '', email: '', projectType: 'Job Opportunity', message: '' };
+const EMPTY_FORM = { name: '', email: '', message: '' };
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -40,7 +40,6 @@ export const ContactSection: React.FC = () => {
         {
           from_name: formData.name,
           reply_to: formData.email,
-          reason: formData.projectType,
           message: formData.message
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
@@ -216,20 +215,6 @@ export const ContactSection: React.FC = () => {
                       className="form-input"
                     />
                   </div>
-                </div>
-
-                <div className="form-field">
-                  <label className="form-label">Reason for Contact</label>
-                  <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="form-select"
-                  >
-                    <option value="Job Opportunity">Job Opportunity</option>
-                    <option value="Freelance Project">Freelance Project</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                  </select>
                 </div>
 
                 <div className="form-field">

@@ -27,7 +27,7 @@ export const CustomerFeedback: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-head-title">Global Client <span>Feedback</span></h2>
+            <h2 className="section-head-title">User <span>Feedback</span></h2>
             <p className="section-head-subtitle">
               Verified reviews and 5-star ratings from professionals worldwide who have transformed their presentations.
             </p>

@@ -12,6 +12,7 @@ import { AnimatedBackground } from './components/AnimatedBackground';
 import { AnimeJsBackground } from './components/AnimeJsBackground';
 import { ScrollProgress } from './components/ScrollProgress';
 import { VeeraAssistant } from './components/VeeraAssistant';
+import { ScrollReveal } from './components/ScrollReveal';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowUp } from 'lucide-react';
 import './App.css';
@@ -53,13 +54,27 @@ export const App: React.FC = () => {
       {/* Main Sections */}
       <main>
         <HeroSection onExploreClick={handleExploreClick} />
-        <BeforeAfterSuite />
-        <CoverflowGallery />
-        <PortfolioShowcase />
-        <CustomerFeedback />
-        <SkillsMatrix />
-        <ExperienceTimeline />
-        <ContactSection />
+        <ScrollReveal>
+          <BeforeAfterSuite />
+        </ScrollReveal>
+        <ScrollReveal>
+          <CoverflowGallery />
+        </ScrollReveal>
+        <ScrollReveal>
+          <PortfolioShowcase />
+        </ScrollReveal>
+        <ScrollReveal>
+          <CustomerFeedback />
+        </ScrollReveal>
+        <ScrollReveal>
+          <SkillsMatrix />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ExperienceTimeline />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ContactSection />
+        </ScrollReveal>
       </main>
 
       {/* Animated AI Portfolio Assistant (Gemini-powered) */}

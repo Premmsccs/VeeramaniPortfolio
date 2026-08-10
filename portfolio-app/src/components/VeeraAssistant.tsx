@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, X, Send, RotateCcw } from 'lucide-react';
 import {
@@ -193,7 +194,7 @@ export const VeeraAssistant: React.FC = () => {
     [messages, loading]
   );
 
-  return (
+  return createPortal(
     <>
       {/* Compact circular launcher (corner of screen) */}
       <div className="va-fab-wrap">
@@ -330,6 +331,7 @@ export const VeeraAssistant: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </>,
+    document.body
   );
 };

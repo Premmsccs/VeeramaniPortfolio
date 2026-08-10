@@ -71,7 +71,7 @@ export const SkillsMatrix: React.FC = () => {
             <span>Core Technical Competencies</span>
           </div>
           <h2 className="section-head-title">
-            Software Mastery & Why Clients Hire Me
+            Why Clients Hire Me
           </h2>
           <p className="section-head-subtitle">
             Combining deep technical proficiency in industry-standard design tools with executive communication discipline to ensure high-impact results every time.

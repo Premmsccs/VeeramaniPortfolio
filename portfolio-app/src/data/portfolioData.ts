@@ -129,32 +129,32 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'pitch-deck-1',
-    title: 'Series-A Investor Pitch Deck: FinTech & Cloud Architecture',
+    title: 'Business Startup Growth & Strategy Presentation Deck',
     category: 'presentation',
     image: '/assets/portfolio/image27.png',
-    description: 'Designed a high-stakes, 35-slide investor presentation deck communicating complex cloud architecture, market opportunity, and financial projections.',
-    tags: ['Pitch Deck', 'Financial Charts', 'Data Storytelling', 'Investor Ready'],
-    metrics: '$5M Funding Round Success',
-    client: 'FinTech Startup',
+    description: 'Professional presentation deck designed for emerging startups to effectively communicate their foundational business model, growth strategies, and market potential.',
+    tags: ['Startup Deck', 'Business Strategy', 'Presentation Template', 'PowerPoint'],
+    metrics: 'Over 5,000 Downloads',
+    client: 'B2B Consulting Firm',
     highlights: [
-      'Crafted data charts showing compound annual growth rate (CAGR) with glowing callout flags',
-      'Built interactive slide transitions and non-linear navigation hyperlinks',
-      'Maintained strict corporate brand guidelines and custom color palettes across every slide'
+      'Structured slide layouts focusing on clear business foundations and roadmap delivery',
+      'Professional corporate color palette tailored for B2B audiences and stakeholders',
+      'Fully editable vector-based slides optimized for rapid content customization'
     ]
   },
   {
     id: 'pitch-deck-2',
-    title: 'Corporate Annual Overview & Strategic Roadmap 2026',
+    title: 'Tech Startup Pitch Deck for Seed & Series Funding',
     category: 'presentation',
     image: '/assets/portfolio/image28.png',
-    description: 'Comprehensive annual report presentation transforming dense tabular data into scannable executive summary slides with dynamic process flows.',
-    tags: ['Corporate Profile', 'Annual Report', 'Process Flows', 'Strategic Roadmap'],
-    metrics: 'Deployed to 500+ Stakeholders',
-    client: 'Multinational Corporation',
+    description: 'High-impact investor pitch deck tailored for tech startups to transform complex visionary ideas into compelling, scalable business narratives.',
+    tags: ['Pitch Deck', 'Investor Presentation', 'Startup Funding', 'Storytelling'],
+    metrics: 'Secured Seed Funding',
+    client: 'Tech Innovators Inc.',
     highlights: [
-      'Designed 5-year strategic timeline slides with milestone checkpoints',
-      'Created custom iconography system aligned with corporate visual identity',
-      'Optimized layout spacing for dual screen share and physical print distribution'
+      'Sleek dark-mode aesthetic tailored for modern technology brands and software products',
+      'Strategic storytelling flow designed to guide investors seamlessly from problem to solution',
+      'Data-driven dashboard slides with intuitive chart graphics and KPI callouts'
     ]
   },
   {
@@ -218,30 +218,32 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'poster-1',
-    title: 'High-Impact Brand Marketing & Digital Social Poster Campaign',
+    title: 'Extreme Fitness & Gym Motivation Social Media Poster',
     category: 'poster',
     image: '/assets/portfolio/image39.jpeg',
-    description: 'Eye-catching promotional graphics designed using Adobe Illustrator and Photoshop for brand awareness, events, and social media engagement.',
-    tags: ['Poster Design', 'Social Media', 'Photoshop', 'Brand Marketing'],
-    metrics: '250% Engagement Surge',
-    client: 'Creative Brand Studio',
+    description: 'High-energy promotional poster designed for fitness brands to drive membership engagement, featuring intense subject focus and motivational copy.',
+    tags: ['Fitness Poster', 'Gym Marketing', 'Social Media Campaign', 'Photoshop'],
+    metrics: '300% Increase in Inquiries',
+    client: 'Elite Fitness Studio',
     highlights: [
-      'Leveraged bold typography and cinematic color grading to command attention',
-      'Optimized aspect ratios for Instagram, LinkedIn, and high-resolution print'
+      'Leveraged bold, aggressive typography to convey strength and motivation',
+      'Applied cinematic color grading and high-contrast subject isolation techniques',
+      'Optimized aspect ratios specifically for Instagram and Facebook targeted ad placements'
     ]
   },
   {
     id: 'poster-2',
-    title: 'Tech Symposium & AI Video Creative Announcement Poster',
+    title: 'Fresh Citrus Beverage Promotional Discount Poster',
     category: 'poster',
     image: '/assets/portfolio/image42.jpeg',
-    description: 'Futuristic event poster and video teaser thumbnail combining AI generated visual elements with precise typography.',
-    tags: ['AI Video Art', 'Event Marketing', 'Digital Flyer', 'Illustrator'],
-    metrics: 'Over 1,200 Event Registrations',
-    client: 'Tech Event Organizers',
+    description: 'Vibrant and refreshing product marketing poster for a beverage brand, featuring dynamic fruit compositions and clear 50% off promotional callouts.',
+    tags: ['Product Marketing', 'Beverage Poster', 'Photoshop', 'Advertising Campaign'],
+    metrics: '50% Boost in Sales',
+    client: 'FreshJuice Co.',
     highlights: [
-      'Blended AI visual art with custom vector graphic overlays',
-      'Delivered brand-consistent marketing collateral across digital & physical channels'
+      'Developed an appetizing color palette utilizing vibrant oranges and complementary greens',
+      'Integrated dynamic splash effects and 3D product placement for visual impact',
+      'Established a clear visual hierarchy prioritizing the discount offer and brand messaging'
     ]
   },
   {
