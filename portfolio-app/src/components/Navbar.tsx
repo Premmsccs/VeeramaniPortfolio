@@ -79,6 +79,17 @@ export const Navbar: React.FC = () => {
 
           <ThemeToggle />
 
+          {/* Top Navbar AI Bot Button */}
+          <button
+            onClick={() => window.dispatchEvent(new Event('open-veera-ai'))}
+            className="navbar-ai-btn"
+            aria-label="Open Veera AI assistant"
+            title="Ask Veera AI"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', cursor: 'pointer', padding: '6px' }}
+          >
+            <img src="/assets/veera-bot.svg" alt="Veera AI" style={{ width: 24, height: 24 }} />
+          </button>
+
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

@@ -113,14 +113,27 @@ export const VeeraAssistant: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Listen for custom event to open chat from top navbar
+  useEffect(() => {
+    const handleOpen = () => setOpen(true);
+    window.addEventListener('open-veera-ai', handleOpen);
+    return () => window.removeEventListener('open-veera-ai', handleOpen);
+  }, []);
+
   const clearChat = useCallback(() => {
     setMessages([{ role: 'model', text: GREETING }]);
     setInput('');
     setLoading(false);
   }, []);
 
+  const scrollToBottom = useCallback(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, []);
+
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+    scrollToBottom();
   }, [messages, loading, open]);
 
   const send = useCallback(
