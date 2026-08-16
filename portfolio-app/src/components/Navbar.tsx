@@ -47,9 +47,10 @@ export const Navbar: React.FC = () => {
 
         {/* Brand */}
         <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="logo-box cursor-interactive">
-          <div className="nav-brand-title">
-            <span className="brand-name">VEERAMANI</span>
-            <span className="brand-accent"> K</span>
+          <div className="brand-info">
+            <div className="brand-text">
+              VEERAMANI<span> K</span>
+            </div>
             <div className="brand-subtitle">
               Presentation Designer
             </div>
@@ -119,6 +120,31 @@ export const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              handleResumeDownload();
+            }}
+            className="mobile-dropdown-link mobile-resume-btn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              width: '100%',
+              marginTop: '8px',
+              padding: '12px',
+              borderRadius: '12px',
+              background: 'var(--gradient-button)',
+              color: '#0a0a0a',
+              border: 'none',
+              fontWeight: 800,
+              cursor: 'pointer'
+            }}
+          >
+            <Download size={16} />
+            <span>Download Resume</span>
+          </button>
         </motion.div>
       )}
     </motion.header>

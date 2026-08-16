@@ -309,10 +309,10 @@ main > section[id] {
 }
 
 /* Small screens: compact the bar so nothing spills past the edge */
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .navbar-actions { gap: 8px; }
-  .navbar-actions .btn-primary span { display: none; }
-  .navbar-actions .btn-primary { padding: 11px 13px; }
+  .navbar-actions .btn-primary { display: none; }
+  .navbar-ai-btn { display: none !important; }
 }
 
 @media (max-width: 360px) {
