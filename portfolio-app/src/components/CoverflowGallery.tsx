@@ -133,6 +133,18 @@ export const CoverflowGallery: React.FC = () => {
 
   const active = items[index];
 
+  // Create a dedicated portal container for the lightbox to avoid mobile stacking context bugs
+  const [lightboxPortal] = useState(() => {
+    if (typeof document === 'undefined') return null;
+    const existing = document.getElementById('cf-lightbox-portal');
+    if (existing) return existing;
+    const el = document.createElement('div');
+    el.id = 'cf-lightbox-portal';
+    el.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:2147483640;';
+    document.body.appendChild(el);
+    return el;
+  });
+
   return (
     <section id="showcase" className="portfolio-section">
       <div className="container-max">
@@ -293,12 +305,13 @@ export const CoverflowGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* Lightbox — portalled to <body> so it sits above the fixed navbar */}
-      {createPortal(
+      {/* Lightbox — portalled to dedicated container to bypass GPU layers on mobile */}
+      {lightboxPortal && createPortal(
         <AnimatePresence>
           {lightbox && (
             <motion.div
               className="cf-lightbox"
+              style={{ pointerEvents: 'auto', zIndex: 2147483640 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -321,7 +334,7 @@ export const CoverflowGallery: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>,
-        document.body
+        lightboxPortal
       )}
     </section>
   );

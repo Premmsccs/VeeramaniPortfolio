@@ -147,7 +147,10 @@ export const BeforeAfterSuite: React.FC = () => {
                     className="slider-img"
                     draggable={false}
                   />
-                  <div className="slider-overlay-label label-after">
+                  <div 
+                    className="slider-overlay-label label-after"
+                    style={{ opacity: sliderPos > 20 ? 1 : 0, transition: 'opacity 0.2s ease' }}
+                  >
                     <span className="label-text-full">AFTER: Executive SaaS Slide Deck (Veeramani K)</span>
                     <span className="label-text-short">AFTER</span>
                   </div>
@@ -174,7 +177,10 @@ export const BeforeAfterSuite: React.FC = () => {
                     className="slider-img"
                     draggable={false}
                   />
-                  <div className="slider-overlay-label label-before">
+                  <div 
+                    className="slider-overlay-label label-before"
+                    style={{ opacity: sliderPos < 80 ? 1 : 0, transition: 'opacity 0.2s ease' }}
+                  >
                     <span className="label-text-full">BEFORE: Unpolished Initial Draft</span>
                     <span className="label-text-short">BEFORE</span>
                   </div>
