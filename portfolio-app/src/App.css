@@ -312,7 +312,6 @@ main > section[id] {
 @media (max-width: 768px) {
   .navbar-actions { gap: 8px; }
   .navbar-actions .btn-primary { display: none; }
-  .navbar-ai-btn { display: none !important; }
 }
 
 @media (max-width: 360px) {
