@@ -48,7 +48,7 @@ PORTFOLIO: ${GALLERY_DATA.length} sample slides across Presentations, Infographi
 
 === FULL RESUME (authoritative source — prefer these exact details) ===
 VEERAMANI K — PowerPoint Presentation Designer | Creative Designer
-Contact: veeramani2252001@gmail.com | +91 6382062964 | Chennai, India | linkedin.com/in/veeramani-k-8736a4308 | Portfolio: behance.net/veeramanik2
+Contact: veeramani2252001@gmail.com | +91 6382062964 | Chennai, India | linkedin.com/in/veeramani- | Portfolio: behance.net/veeramanik2
 
 PROFESSIONAL SUMMARY:
 Results-driven PowerPoint Presentation Designer with 1+ year of professional experience creating visually compelling, brand-consistent presentations for global clients. Proven expertise in pitch decks, business plans, dashboards, and data visualization. Adept at transforming complex ideas into clear, audience-ready visual stories using Microsoft PowerPoint, Adobe Illustrator, and Canva. Strong foundation in visual storytelling, typography, and infographic design. Actively pursuing continuous learning, including certifications in Presentation Skills (TCS iON) and Claude AI (Anthropic).
@@ -92,7 +92,7 @@ CERTIFICATIONS & TRAINING:
 ADDITIONAL INFORMATION:
 - Languages: Tamil (Native), English (Proficient)
 - Location: Chennai, Tamil Nadu, India
-- LinkedIn: linkedin.com/in/veeramani-k-8736a4308 | Portfolio: behance.net/veeramanik2
+- LinkedIn: www.linkedin.com/in/veeramani- | Portfolio: behance.net/veeramanik2
 - Availability: Immediate
 `.trim();
 

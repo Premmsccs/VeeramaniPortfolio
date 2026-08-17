@@ -94,7 +94,7 @@ export const PERSONAL_INFO = {
   email: 'veeramani2252001@gmail.com',
   phone: '+91 6382062964',
   location: 'Chennai, Tamil Nadu, India',
-  linkedin: 'https://linkedin.com/in/veeramani-k',
+  linkedin: 'https://www.linkedin.com/in/veeramani-',
   behance: 'https://www.behance.net/veeramanik2',
   resumeUrl: '/Veeramani_Resume.pdf',
   calendly: 'https://calendly.com/veeramani',
