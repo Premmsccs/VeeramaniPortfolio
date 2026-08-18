@@ -102,10 +102,10 @@ export const PERSONAL_INFO = {
   stats: [
     { label: 'Presentations Delivered', value: '1,500+', icon: 'Briefcase' },
     { label: 'Slide Redesigns Completed', value: '100+', icon: 'Sparkles' },
-    { label: 'Years Professional Exp.', value: '1.7+', icon: 'Calendar' },
+    { label: 'Years Professional Exp.', value: '1.9', icon: 'Calendar' },
     { label: 'Global Client Retention', value: '99%', icon: 'Award' }
   ],
-  summary: `Results-driven PowerPoint Presentation Designer and AI Creative Specialist with 1.7+ years of professional experience creating visually compelling, brand-consistent presentations for global clients. Proven expertise in investor pitch decks, corporate profiles, marketing dashboards, and data visualization. Adept at transforming complex ideas into clear, audience-ready visual stories using Microsoft PowerPoint, Adobe Illustrator, Canva, and AI video/slide tools.`
+  summary: `Results-driven PowerPoint Presentation Designer and AI Creative Specialist with 1.9 years of professional experience creating visually compelling, brand-consistent presentations for global clients. Proven expertise in investor pitch decks, corporate profiles, marketing dashboards, and data visualization. Adept at transforming complex ideas into clear, audience-ready visual stories using Microsoft PowerPoint, Adobe Illustrator, Canva, and AI video/slide tools.`
 };
 
 export const PROJECTS_DATA: Project[] = [

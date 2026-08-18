@@ -28,7 +28,7 @@ export const ExperienceTimeline: React.FC = () => {
             <span>Professional Career Path</span>
           </div>
           <h2 className="section-head-title">
-            1.7+ Years of Dedicated Presentation Excellence
+            1.9 Years of Dedicated Presentation Excellence
           </h2>
           <p className="section-head-subtitle">
             A proven track record of career progression at SlideEgg, backed by recognized corporate certifications and formal business administration education.
