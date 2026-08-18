@@ -123,7 +123,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             className="hero-lead"
             style={{ y: textY, opacity: textOpacity }}
           >
-            I am <strong>VEERAMANI K</strong>, a dedicated Presentation Designer with <strong>1.7+ years of full-time professional experience</strong> designing high-stakes corporate pitch decks, financial overviews, and strategic timelines for global enterprises. I specialize in turning complex data into compelling visual narratives using <strong>100% Native PowerPoint Shapes, Adobe Illustrator, Canva Pro, and AI Storyboarding</strong>.
+            I am <strong>VEERAMANI K</strong>, a dedicated Presentation Designer with <strong>1.9 Years of Experience</strong> designing high-stakes corporate pitch decks, financial overviews, and strategic timelines for global enterprises. I specialize in turning complex data into compelling visual narratives using <strong>100% Native PowerPoint Shapes, Adobe Illustrator, Canva Pro, and AI Storyboarding</strong>.
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-btn-group" style={{ y: textY, opacity: textOpacity }}>
@@ -150,7 +150,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             </motion.div>
             <motion.div whileHover={{ y: -4 }} className="hero-stat-card">
               <AnimatedCounter value="30+" className="hero-stat-num" />
-              <span className="hero-stat-lbl">Enterprise Clients Served</span>
+              <span className="hero-stat-lbl">Other Designs</span>
             </motion.div>
           </motion.div>
 
@@ -181,18 +181,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
 
             <div className="profile-name">Veeramani K</div>
             <div className="profile-title">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={roleIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.4 }}
-                  style={{ display: 'inline-block' }}
-                >
-                  {roles[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
+              Presentation Designer | Graphic Designer
             </div>
 
             <div className="profile-meta-grid">
