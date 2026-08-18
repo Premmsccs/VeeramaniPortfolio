@@ -181,14 +181,19 @@ export const VeeraAssistant: React.FC = () => {
           })
         });
         const data = await res.json();
-        const reply: string | undefined = data?.choices?.[0]?.message?.content;
+        let reply: string | undefined = data?.choices?.[0]?.message?.content;
+        
+        // Strip out reasoning blocks (<think>...</think>) from models like Qwen-R1
+        if (reply) {
+          reply = reply.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+        }
 
         setMessages([
           ...history,
           {
             role: 'model',
             text:
-              reply?.trim() ||
+              reply ||
               `Sorry, I couldn't reach my brain just now. You can email Veeramani at ${PERSONAL_INFO.email}.`
           }
         ]);
