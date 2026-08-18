@@ -86,7 +86,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
 
           <motion.div variants={itemVariants} className="hero-role-pill" style={{ y: textY, opacity: textOpacity }}>
             <Award size={16} color="var(--accent-gold)" />
-            <span>Expert Presentation Designer • Visual Storytelling Specialist</span>
+            <span>Presentation Designer | Graphic Designer</span>
           </motion.div>
 
           <motion.h1 
@@ -166,7 +166,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
 
             <div className="profile-name">Veeramani K</div>
             <div className="profile-title">
-              Presentation Designer & Graphic Designer
+              Presentation Designer | Graphic Designer
             </div>
 
             <div className="profile-meta-grid">

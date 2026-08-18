@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
               VEERAMANI<span> K</span>
             </div>
             <div className="brand-subtitle">
-              Presentation Designer
+              Presentation Designer | Graphic Designer
             </div>
           </div>
         </div>

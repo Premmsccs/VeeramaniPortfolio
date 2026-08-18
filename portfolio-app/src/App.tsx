@@ -90,7 +90,7 @@ export const App: React.FC = () => {
               <Sparkles size={16} color="var(--accent-gold)" />
             </div>
             <p className="footer-brand-desc">
-              Senior PowerPoint Presentation Designer & AI Video Creative Architect • Chennai, India
+              Presentation Designer | Graphic Designer • Chennai, India
             </p>
           </div>
 

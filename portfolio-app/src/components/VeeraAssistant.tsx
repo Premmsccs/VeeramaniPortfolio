@@ -47,7 +47,7 @@ CERTIFICATIONS: ${CERTIFICATIONS_DATA.map((c) => `${c.name} (${c.issuer})`).join
 PORTFOLIO: ${GALLERY_DATA.length} sample slides across Presentations, Infographics and Dashboards, plus featured case studies.
 
 === FULL RESUME (authoritative source — prefer these exact details) ===
-VEERAMANI K — PowerPoint Presentation Designer | Creative Designer
+VEERAMANI K — Presentation Designer | Graphic Designer
 Contact: veeramani2252001@gmail.com | +91 6382062964 | Chennai, India | www.linkedin.com/in/veeramani-/ | Portfolio: behance.net/veeramanik2
 
 PROFESSIONAL SUMMARY:

@@ -90,7 +90,7 @@ export interface Experience {
 
 export const PERSONAL_INFO = {
   name: 'VEERAMANI K',
-  title: 'PowerPoint Presentation Designer | Creative AI Storyteller',
+  title: 'Presentation Designer | Graphic Designer',
   email: 'veeramani2252001@gmail.com',
   phone: '+91 6382062964',
   location: 'Chennai, Tamil Nadu, India',
