@@ -15,7 +15,7 @@ type Role = 'user' | 'model';
 interface Msg { role: Role; text: string; }
 
 const API_KEY = import.meta.env.VITE_GROQ_API_KEY as string | undefined;
-const MODEL = 'llama-3.3-70b-versatile';
+const MODEL = 'qwen/qwen3.6-27b';
 const ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
 
 /* Build a compact knowledge base from the portfolio data so the bot stays on-message */
