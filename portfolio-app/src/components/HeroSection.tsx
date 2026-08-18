@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { ArrowRight, Eye, Award } from 'lucide-react';
-import { motion, AnimatePresence, type Variants, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
+import { motion, type Variants, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 import { AnimatedCounter } from './AnimatedCounter';
 import { MagneticButton } from './MagneticButton';
 
@@ -26,21 +26,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
   const profileY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 80 : 300]);
   const profileScale = useTransform(scrollYProgress, [0, 1], [1, isMobile ? 0.9 : 0.8]);
   const profileOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const [roleIndex, setRoleIndex] = useState(0);
-  const roles = [
-    'Executive Presentation Designer',
-    'Series-A / IPO Pitch Deck Master',
-    'Infographic & Data Storyteller',
-    'AI Video & Slide Specialist'
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 3200);
-    return () => clearInterval(timer);
-  }, []);
-
   const handleRedesignClick = () => {
     const el = document.getElementById('redesign');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
