@@ -181,7 +181,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
 
             <div className="profile-name">Veeramani K</div>
             <div className="profile-title">
-              Presentation Designer | Graphic Designer
+              Presentation Designer & Graphic Designer
             </div>
 
             <div className="profile-meta-grid">
