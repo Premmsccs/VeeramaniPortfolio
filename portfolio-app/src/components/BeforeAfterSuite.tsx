@@ -124,7 +124,7 @@ export const BeforeAfterSuite: React.FC = () => {
                 onPointerUp={stopDragging}
                 onPointerCancel={stopDragging}
                 className="slider-wrapper"
-                style={{ touchAction: 'none', cursor: 'ew-resize' }}
+                style={{ touchAction: 'pan-y', cursor: 'ew-resize' }}
               >
                 {/* AFTER IMAGE LAYER (Full width, clipped from the left) */}
                 <div

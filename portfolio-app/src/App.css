@@ -945,6 +945,29 @@ main > section[id] {
   box-shadow: var(--glow-gold);
 }
 
+@media (max-width: 768px) {
+  .tab-container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+  }
+  
+  .tab-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
 .slider-wrapper {
   position: relative;
   width: 100%;
